@@ -17,12 +17,12 @@ export const uploader = multer({ storage });
 
 export class ProductManager {
   constructor() {
-    this.path = "../products.json";
+    this.path = "./products.json";
     this.products = [];
     this.id = 0;
     const createFile = async () => {
-      if (!fs.existsSync("../products.json")) {
-        return await fs.promises.writeFile("../products.json", "[]");
+      if (!fs.existsSync("./products.json")) {
+        return await fs.promises.writeFile("./products.json", "[]");
       }
     };
     createFile();
@@ -76,7 +76,7 @@ export class ProductManager {
   async getProducts() {
     const filesProducts = await fs.promises.readFile(this.path, "utf-8");
     const filesProductsToParse = JSON.parse(filesProducts);
-    console.log(filesProductsToParse);
+    return console.log(filesProductsToParse);
   }
 
   async getProductById(id) {
@@ -135,7 +135,7 @@ export class ProductManager {
 export class CartManager {
   constructor() {
     this.carts = [];
-    this.path = "../carts.json";
+    this.path = "./carts.json";
   }
 
   async idGenerator() {
@@ -213,7 +213,7 @@ export class CartManager {
     };
     //verifico que exista el producto mediante su id en el stock de productos
     const fileProduct = await fs.promises.readFile(
-      path.resolve() + "../products.json",
+      path.resolve() + "./products.json",
       "utf-8"
     );
     const fileProductParsed = JSON.parse(fileProduct);

@@ -6,7 +6,7 @@ routerProducts.get("/", (req, res) => {
   let limit = req.query.limit;
   if (!limit) {
     try {
-      const productManager = new ProductManager("../products.json");
+      const productManager = new ProductManager("../../products.json");
       const products = productManager.getProducts();
 
       return res.status(200).json({
@@ -20,7 +20,7 @@ routerProducts.get("/", (req, res) => {
   } else {
     limit = parseInt(limit);
     try {
-      const productManager = new ProductManager("../products.json");
+      const productManager = new ProductManager("../../products.json");
       const products = productManager.getProducts();
       const products_limit = [];
 
@@ -45,7 +45,7 @@ routerProducts.get("/:pid", (req, res) => {
   const id = req.params.pid;
 
   try {
-    const productManager = new ProductManager("../products.json");
+    const productManager = new ProductManager("../../products.json");
     const product = productManager.getProductsById(parseInt(id));
 
     return res.status(200).json({ status: "success", data: product });
