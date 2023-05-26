@@ -89,7 +89,7 @@ export class ProductManager {
     if (findProduct) {
       return console.log(findProduct);
     } else {
-      console.log("Product not found");
+      return console.log("Product not found");
     }
   }
 
@@ -102,7 +102,7 @@ export class ProductManager {
     );
 
     if (findProduct == undefined) {
-      console.log("Product not found");
+      return console.log("Product not found");
     } else {
       findProduct[prop] = newValor;
       const productsToString = JSON.stringify(filesProductsToParse);
@@ -119,7 +119,7 @@ export class ProductManager {
     );
 
     if (positionProduct == -1) {
-      console.log("Product not found");
+      return console.log("Product not found");
     } else {
       delete filesProductsToParse[positionProduct];
       const productsDelete = filesProductsToParse.filter(
@@ -136,6 +136,12 @@ export class CartManager {
   constructor() {
     this.carts = [];
     this.path = "./carts.json";
+    const createCart = async () => {
+      if (!fs.existsSync("./carts.json")) {
+        return await fs.promises.writeFile("./carts.json", "[]");
+      }
+    };
+    createCart();
   }
 
   async idGenerator() {

@@ -46,7 +46,7 @@ routerProducts.get("/:pid", (req, res) => {
 
   try {
     const productManager = new ProductManager("../../products.json");
-    const product = productManager.getProductsById(parseInt(id));
+    const product = productManager.getProductById(parseInt(id));
 
     return res.status(200).json({ status: "success", data: product });
   } catch (error) {
